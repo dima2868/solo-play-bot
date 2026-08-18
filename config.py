@@ -4,8 +4,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Discord Music Bot Token
-# Loaded from environment variable DISCORD_MUSIC_BOT_TOKEN (or Railway Variables / .env)
-DISCORD_MUSIC_BOT_TOKEN = os.getenv("DISCORD_MUSIC_BOT_TOKEN") or os.getenv("DISCORD_BOT_TOKEN", "")
+# Resolves DISCORD_MUSIC_BOT_TOKEN, DISCORD_BOT_TOKEN, BOT_TOKEN, or TOKEN from environment
+DISCORD_MUSIC_BOT_TOKEN = (
+    os.getenv("DISCORD_MUSIC_BOT_TOKEN")
+    or os.getenv("DISCORD_BOT_TOKEN")
+    or os.getenv("BOT_TOKEN")
+    or os.getenv("TOKEN")
+    or ""
+).strip()
 
 # Excluded Voice Channel IDs (AFK channels, private rooms, etc.)
 EXCLUDED_VOICE_CHANNEL_IDS = [
